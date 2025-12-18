@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="haus">
+    <!-- 设置重力 -->
+    <gravity>0 0 -9.81</gravity>
+    
+    <!-- 设置光源 -->
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>1 1 1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.5</constant>
+        <linear>0.05</linear>
+        <quadratic>0.002</quadratic>
+      </attenuation>
+    </light>
+    
+    <!-- 创建地面，确保它是静态物体 -->
+    <model name="floor">
+      <pose>0 0 0 0 0 0</pose>
+      <static>true</static>  <!-- 让地面变为静态物体 -->
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>15 15 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>15 15 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 0.2</ambient> <!-- 浅灰色透明 -->
+            <diffuse>0.2 0.2 0.2 0.2</diffuse> <!-- 浅灰色透明 -->
+            <specular>0.2 0.2 0.2 0.1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall1">
+      <pose>4.95 0 1.05 0 0 0</pose> <!-- 调整墙体位置 -->
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.1 10 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.1 10 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 0.5</ambient> <!-- 设置带透明度的墙 -->
+            <diffuse>0.5 0.5 0.5 0.5</diffuse>
+            <specular>0.2 0.2 0.2 0.5</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

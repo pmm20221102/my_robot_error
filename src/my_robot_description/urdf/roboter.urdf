@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot name="robot_presatation">
+    <!--körper-->
+    <link name="base_link">
+        <!--Beschreibung-->
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>    
+            <!--Form-->
+            <geometry>
+                <cylinder radius="0.1" length="0.12"/>
+            </geometry>
+            <material name = "white">
+                <color rgba="1.0 1.0 1.0 0.5"/>
+            </material>
+        </visual>   
+    </link>
+
+    <link name="IMU_link">
+        <!--Beschreibung-->
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>    
+            <!--Form-->
+            <geometry>
+                <box size="0.02 0.02 0.02"/>
+            </geometry>
+            <material name = "black">
+                <color rgba="0.0 0.0 0.0 0.5"/>
+            </material>
+        </visual>   
+    </link>
+
+    <joint name="IMU_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="IMU_link"/>
+    </joint>
+</robot>

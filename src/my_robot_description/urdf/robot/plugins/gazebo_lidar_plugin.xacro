@@ -1,0 +1,30 @@
+<gazebo reference="laser_link">
+<link name="laser_link">
+  <sensor name="lidar_sensor" type="lidar">
+    <pose>0 0 0.05 0 0 0</pose>
+    <always_on>true</always_on>
+    <update_rate>10</update_rate>
+    <visualize>true</visualize>
+
+    <lidar>
+      <horizontal_samples>360</horizontal_samples>
+      <horizontal_resolution>1</horizontal_resolution>
+      <horizontal_min_angle>0.0</horizontal_min_angle>
+      <horizontal_max_angle>6.283</horizontal_max_angle>
+      <range>
+        <min>0.12</min>
+        <max>8.0</max>
+        <resolution>0.01</resolution>
+      </range>
+    </lidar>
+
+    <!-- ✅ 必须添加两个 Gazebo Harmonic 传感器系统插件 -->
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors"/>
+    <plugin
+      filename="gz-sim-sensor-publisher-system"
+      name="gz::sim::systems::SensorPublisher"/>
+  </sensor>
+</link>
+</gazebo>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_presatation">
+    <xacro:macro name="base_link" params="length radius">
+        <!--körper-->
+        <link name="base_link">
+            <!--Beschreibung-->
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>    
+                <!--Form-->
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+                <material name = "white">
+                    <color rgba="1.0 1.0 1.0 0.5"/>
+                </material>
+            </visual>   
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="IMU_link" params="imu_name xyz">
+        <link name="${imu_name}_link">
+            <!--Beschreibung-->
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>    
+                <!--Form-->
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry>
+                <material name = "black">
+                    <color rgba="0.0 0.0 0.0 0.5"/>
+                </material>
+            </visual>   
+        </link>
+
+        <joint name="${imu_name}_joint" type="fixed">
+            <origin xyz="${xyz}" rpy="0.0 0.0 0.0"/>
+            <parent link="base_link"/>
+            <child link="${imu_name}_link"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:base_link length="0.12" radius="0.1"/>
+    <xacro:IMU_link imu_name="imu_up" xyz="0.0 0.0 0.03"/>
+    <xacro:IMU_link imu_name="imu_down" xyz="0.0 0.0 -0.03"/>
+</robot>
